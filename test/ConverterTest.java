@@ -74,8 +74,63 @@ public class ConverterTest {
 		assertEquals("IV", Converter.numberToNumeral(4));
 	}
 
+	/**
+	 * We're assuming that the highest number representable in Roman numerals is 4999. This is an arbitrary distinction
+	 */
+	@Test
+	public void testNumberToNumeralFourMs() {
+		assertEquals("MMMM", Converter.numberToNumeral(4000));
+	}
+
+	@Test
+	public void testNumberToNumeralEdge() {
+		assertEquals("MMMMCMXCIX", Converter.numberToNumeral(4999));
+	}
+
 	@Test
 	public void testNumberToNumeralComplexity() {
-		assertEquals("MMMMMMDCCCXL", Converter.numberToNumeral(6840));
+		assertEquals("MMMMDCCCXL", Converter.numberToNumeral(4840));
+	}
+
+	// test method numeralToNumber()
+	@Test
+	public void testNumeralToNumberMapping() {
+		assertEquals(1, Converter.numeralToNumber("I"));
+	}
+
+	@Test
+	public void testNumeralToNumberSubtraction() {
+		assertEquals(4, Converter.numeralToNumber("IV"));
+	}
+
+	@Test
+	public void testNumeralToNumberProperOrder() {
+		assertEquals(1066, Converter.numeralToNumber("MLXVI"));
+	}
+
+	@Test
+	public void testNumeralToNumberProperSubtraction() {
+		assertEquals(40, Converter.numeralToNumber("XL"));
+
+	}
+
+	@Test
+	public void testNumeralToNumberThreeAtMost() {
+		assertEquals(99, Converter.numeralToNumber("XCIX"));
+	}
+
+	@Test
+	public void testNumeralToNumberNoMoreThanThree() {
+		assertEquals(3, Converter.numeralToNumber("III"));
+	}
+
+	@Test
+	public void testNumeralToNumberComplexity() {
+		assertEquals(3694, Converter.numeralToNumber("MMMDCXCIV"));
+	}
+
+	@Test
+	public void testNumeralToNumberEdge() {
+		assertEquals(4999, Converter.numeralToNumber("MMMMCMXCIX"));
 	}
 }

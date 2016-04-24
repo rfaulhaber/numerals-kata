@@ -14,8 +14,8 @@ public class Main {
 			if (line.equals("exit")) System.exit(0);
 			else {
 				if (Converter.isValidNumeral(line)) System.out.println(Converter.numeralToNumber(line));
-				else if (line.matches("[0-9]") && Integer.valueOf(line) < 5000) System.out.println(Converter.numberToNumeral(Integer.valueOf(line)));
-				else System.out.println("I don't understand the input!");
+				else if (line.matches("[0-9]+") && Integer.valueOf(line) < 5000) System.out.println(Converter.numberToNumeral(Integer.valueOf(line)));
+				else System.out.println("That input is invalid!");
 			}
 		}
     }

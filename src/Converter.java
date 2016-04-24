@@ -97,8 +97,66 @@ public class Converter {
 
 
 
-	public static String numeralToNumber(String numeral) {
-		return "";
+	public static int numeralToNumber(String numeral) {
+		int number = 0;
+		for (int i = 0; i < numeral.length(); i++) {
+			char c = numeral.charAt(i);
+			char nextC;
+			if (i + 1 < numeral.length()) nextC = numeral.charAt(i + 1);
+			else nextC = ' '; // dummy value that won't trigger anything
+
+			switch (c) {
+				case 'I':
+					switch (nextC) {
+						case 'V':
+							number += 4;
+							i++;
+							break;
+						case 'X':
+							number += 9;
+							i++;
+							break;
+						default:
+							number++;
+							break;
+					}
+					break;
+				case 'X':
+					switch (nextC) {
+						case 'L':
+							number += 40;
+							i++;
+							break;
+						case 'C':
+							number += 90;
+							i++;
+							break;
+						default:
+							number += 10;
+							break;
+					}
+					break;
+				case 'C':
+					switch (nextC) {
+						case 'D':
+							number += 400;
+							i++;
+							break;
+						case 'M':
+							number += 900;
+							i++;
+							break;
+						default:
+							number += 100;
+							break;
+					}
+					break;
+				default:
+					number += mNumeralMap.get(Character.toString(c));
+					break;
+			}
+		}
+		return number;
 	}
 
 	public static boolean isValidNumeral(String numeral) {
