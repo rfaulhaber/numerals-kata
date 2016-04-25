@@ -121,7 +121,8 @@ public class ConverterTest {
 
 	@Test
 	public void testNumeralToNumberNoMoreThanThree() {
-		assertEquals(3, Converter.numeralToNumber("III"));
+		assertEquals(8, Converter.numeralToNumber("VIII"));
+		assertEquals(9, Converter.numeralToNumber("IX"));
 	}
 
 	@Test
